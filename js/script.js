@@ -14,6 +14,15 @@ function showAlert(message, className){
 
 }
 
+//limpar campos
+function clearFields(){
+    document.querySelector("#nome").value = "";
+    document.querySelector("#cpf").value = "";
+    document.querySelector("#email").value = "";
+    document.querySelector("#datanasc").value = "";
+    document.querySelector("#senha").value = "";
+}
+
 document.querySelector("#lista-aluno").addEventListener("click", (e) =>{
     target= e.target;
     if (target.classList.contains("delete")) {
@@ -21,4 +30,4 @@ document.querySelector("#lista-aluno").addEventListener("click", (e) =>{
         showAlert("Aluno removido com sucesso!", "danger");
     }
 });
- g
+ 
