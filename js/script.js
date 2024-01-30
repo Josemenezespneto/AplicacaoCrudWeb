@@ -36,7 +36,7 @@ document.querySelector("#form-aluno").addEventListener("submit", (e) =>{
     const senha = document.querySelector("#senha").value;
 
     //validacao
-    if (nome.trim() == "" || cpf.trim() == ""  || email.trim() == "" || datanasc.trim() == "" || senha.trim() == "" ){
+    if (nome.trim() == "" || cpf.trim() == "" && ! Number || email.trim() == "" || datanasc.trim() == "" || senha.trim() == "" ){
         showAlert("Por favor preencha todos os campos", "danger" );
     }
     else{
@@ -57,14 +57,39 @@ document.querySelector("#form-aluno").addEventListener("submit", (e) =>{
             selectedRow = null;
             showAlert("Aluno cadastrado com sucesso", "success");
         }
+        else{
+            selectedRow.children[0].textContent = nome;
+            selectedRow.children[1].textContent = cpf;
+            selectedRow.children[2].textContent = email;
+            selectedRow.children[3].textContent = datanasc;
+            selectedRow = null;
+            showAlert("Informações do aluno editadas com sucesso!", " info");
+        }
+        clearFields();
     }
 }); 
 
+
+//editar campos
+document.querySelector("#lista-aluno").addEventListener("click", (e) =>{
+    target = e.target;
+    if (target.classList.contains("edit")) {
+        selectedRow=target.parentElement.parentElement;
+        document.querySelector("#nome").value=selectedRow.children[0].textContent;
+        document.querySelector("#cpf").value=selectedRow.children[1].textContent;
+        document.querySelector("#email").value=selectedRow.children[2].textContent;
+        document.querySelector("#datanasc").value=selectedRow.children[3].textContent;
+        document.querySelector("#senha").value=selectedRow.children[4].textContent;
+    }
+})
+
+//deletar aluno
 document.querySelector("#lista-aluno").addEventListener("click", (e) =>{
     target= e.target;
     if (target.classList.contains("delete")) {
         target.parentElement.parentElement.remove();
         showAlert("Aluno removido com sucesso!", "danger");
     }
+    
 });
  
