@@ -49,6 +49,7 @@ document.querySelector("#form-aluno").addEventListener("submit", (e) =>{
                 <td>${cpf}</td>
                 <td>${email}</td>
                 <td>${datanasc}</td>
+                <td>${senha}</td>
                 <td>
                 <a href="#" class="btn btn-warning btn-sm edit">Editar</a>
                 <a href="#" class="btn btn-danger btn-sm delete">Apagar</a>
@@ -62,6 +63,7 @@ document.querySelector("#form-aluno").addEventListener("submit", (e) =>{
             selectedRow.children[1].textContent = cpf;
             selectedRow.children[2].textContent = email;
             selectedRow.children[3].textContent = datanasc;
+            selectedRow.children[4].textContent = senha;
             selectedRow = null;
             showAlert("Informações do aluno editadas com sucesso!", " info");
         }
