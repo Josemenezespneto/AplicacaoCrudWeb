@@ -23,6 +23,43 @@ function clearFields(){
     document.querySelector("#senha").value = "";
 }
 
+//criar
+document.querySelector("#form-aluno").addEventListener("submit", (e) =>{
+    e.preventDefault();
+
+    //get valores
+
+    const nome = document.querySelector("#nome").value;
+    const cpf = document.querySelector("#cpf").value;
+    const email = document.querySelector("#email").value;
+    const datanasc = document.querySelector("#datanasc").value;
+    const senha = document.querySelector("#senha").value;
+
+    //validacao
+    if (nome.trim() == "" || cpf.trim() == ""  || email.trim() == "" || datanasc.trim() == "" || senha.trim() == "" ){
+        showAlert("Por favor preencha todos os campos", "danger" );
+    }
+    else{
+        if(selectedRow == null){
+            const list = document.querySelector("#lista-aluno");
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${nome}</td>
+                <td>${cpf}</td>
+                <td>${email}</td>
+                <td>${datanasc}</td>
+                <td>
+                <a href="#" class="btn btn-warning btn-sm edit">Editar</a>
+                <a href="#" class="btn btn-danger btn-sm delete">Apagar</a>
+            `;
+            list.appendChild(row);
+            selectedRow = null;
+            showAlert("Aluno cadastrado com sucesso", "success");
+        }
+    }
+}); 
+
 document.querySelector("#lista-aluno").addEventListener("click", (e) =>{
     target= e.target;
     if (target.classList.contains("delete")) {
